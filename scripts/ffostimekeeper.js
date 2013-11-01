@@ -28,7 +28,7 @@ function redrawTaskList() {
     for (var i = taskList.length; i-->0; ) {
         var currentTask = taskList[i];
         var task = "<li><span>" + currentTask.title + "</span><span>" + zeroPad(currentTask.hours, 2) + ":" + zeroPad(currentTask.minutes, 2) + "</span></li>";
-        $('#taskList ul').append(task);
+        $('#taskList ul').append(task).listview('refresh');
     }
 }
 

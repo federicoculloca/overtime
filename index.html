@@ -1,21 +1,19 @@
 <!doctype html>
 <html>
 <head>
-    <script src="scripts/jquery-2.0.3.js"></script>
-    <script src="scripts/ffostimekeeper.js"></script>
+<script src="scripts/jquery-2.0.3.js"></script>
+<link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
+<script src="scripts/jquery.mobile-1.3.2.js"></script>
+<script src="scripts/ffostimekeeper.js"></script>
 </head>
 <body>
-<div id="mainPage">
-    <div id="mainHeader">
-        <div id="appTitle">
-            <h1>Timekeeping app</h1>
-        </div>
-        <div id="addTaskContainer">
-            <a href="#addTaskPage" id="addTaskButton">+</a>
-        </div>
+<div data-role="page" id="mainPage">
+    <div data-role="header" id="mainHeader">
+        <h3>Timekeeping app</h3>
+        <a data-role="button" class="ui-btn-right" href="#addTaskPage" id="addTaskButton">+</a>
     </div>
-    <div id="taskList">
-        <ul>
+    <div data-role="content" id="taskList">
+        <ul data-role="listview">
             <li>
             <span class="taskDescription">Example task</span>
             <span class="taskDuration">1:00</span>
@@ -27,16 +25,12 @@
         </ul>
     </div>
 </div>
-<div id="addTaskPage">
-    <div id="addTaskHeader">
-        <div id="addTaskPageTitle">
-            <h1>Add a task</h1>
-        </div>
-        <div id="addTaskOkContainer">
-            <a href="#mainPage" id="addTaskOk">Ok</a>
-        </div>
+<div data-role="page" id="addTaskPage">
+    <div data-role="header" id="addTaskHeader">
+        <h1>Add a task</h1>
+        <a data-role="button" class="ui-btn-right" href="#mainPage" id="addTaskOk">Ok</a>
     </div>
-    <div id="addTask">
+    <div data-role="content" id="addTask">
         <label for="addTaskTitle">Title</label>
         <input id="addTaskTitle" title="Task name" />
         <p>Duration</p>
