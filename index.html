@@ -13,7 +13,7 @@
         <a data-role="button" class="ui-btn-right" href="#addTaskPage" id="addTaskButton">+</a>
     </div>
     <div data-role="content" id="taskList">
-        <ul data-role="listview">
+        <ul data-role="listview" data-split-icon="delete">
             <li>
             <span class="taskDescription">Example task</span>
             <span class="taskDuration">1:00</span>
@@ -23,6 +23,9 @@
             <span class="taskDuration">0:40</span>
             </li>
         </ul>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <a data-role="button" id="listClearButton">clear</a>
     </div>
 </div>
 <div data-role="page" id="addTaskPage">

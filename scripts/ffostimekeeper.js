@@ -27,7 +27,7 @@ function redrawTaskList() {
     $('#taskList ul').empty();
     for (var i = taskList.length; i-->0; ) {
         var currentTask = taskList[i];
-        var task = "<li id='" + currentTask.uid + "'><h1>" + currentTask.title + "</h1><h2>" + zeroPad(currentTask.hours, 2) + ":" + zeroPad(currentTask.minutes, 2) + "</h2></li>";
+        var task = "<li id='" + currentTask.uid + "'><a href='#'><h1>" + currentTask.title + "</h1><h2>" + zeroPad(currentTask.hours, 2) + ":" + zeroPad(currentTask.minutes, 2) + "</h2></a><a href='#'></a></li>";
         $('#taskList ul').append(task).listview('refresh');
     }
 }
@@ -39,14 +39,20 @@ $(document).ready( function () {
         var minutes = parseInt($('#addTaskDurationM').val(), 10) || 0;
         var newTask = new TKTask(title, hours, minutes);
         taskList.push(newTask);
-        localStorage.setItem('taskList', JSON.stringify(taskList));
+        window.localStorage.setItem('taskList', JSON.stringify(taskList));
         $('#addTaskTitle').val("");
         $('#addTaskDurationH').val("");
         $('#addTaskDurationM').val("");
         redrawTaskList();
     });
 
-    taskList = JSON.parse(localStorage.getItem('taskList')) || [];
+    $('#listClearButton').click(function () {
+        taskList = [];
+        window.localStorage.removeItem('taskList');
+        $('#taskList ul').empty();
+    });
+
+    taskList = JSON.parse(window.localStorage.getItem('taskList')) || [];
     if (taskList.length != 0) {
         redrawTaskList();
     }
