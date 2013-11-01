@@ -39,12 +39,17 @@ $(document).ready( function () {
         var minutes = parseInt($('#addTaskDurationM').val(), 10) || 0;
         var newTask = new TKTask(title, hours, minutes);
         taskList.push(newTask);
+        localStorage.setItem('taskList', JSON.stringify(taskList));
         $('#addTaskTitle').val("");
         $('#addTaskDurationH').val("");
         $('#addTaskDurationM').val("");
         redrawTaskList();
-        return true;
     });
+
+    taskList = JSON.parse(localStorage.getItem('taskList')) || [];
+    if (taskList.length != 0) {
+        redrawTaskList();
+    }
 });
 
 
