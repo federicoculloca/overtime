@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <script src="scripts/jquery-2.0.3.js"></script>
+    <script src="scripts/ffostimekeeper.js"></script>
+</head>
+<body>
+<div id="mainPage">
+    <div id="mainHeader">
+        <div id="appTitle">
+            <h1>Timekeeping app</h1>
+        </div>
+        <div id="addTaskContainer">
+            <a href="#addTaskPage" id="addTaskButton">+</a>
+        </div>
+    </div>
+    <div id="taskList">
+        <ul>
+            <li>
+            <span class="taskDescription">Example task</span>
+            <span class="taskDuration">1:00</span>
+            </li>
+            <li>
+            <span class="taskDescription">Example task 2</span>
+            <span class="taskDuration">0:40</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="addTaskPage">
+    <div id="addTaskHeader">
+        <div id="addTaskPageTitle">
+            <h1>Add a task</h1>
+        </div>
+        <div id="addTaskOkContainer">
+            <a href="#mainPage" id="addTaskOk">Ok</a>
+        </div>
+    </div>
+    <div id="addTask">
+        <label for="addTaskTitle">Title</label>
+        <input id="addTaskTitle" title="Task name" />
+        <p>Duration</p>
+        <label for="addTaskDurationH">HH</label>
+        <input id="addTaskDurationH" />
+        <label for="addTaskDurationM">MM</label>
+        <input id="addTaskDurationM" />
+    </div>
+</div>
+</body>
+</html>
