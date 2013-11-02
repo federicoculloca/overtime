@@ -27,9 +27,28 @@ function redrawTaskList() {
     $('#taskList ul').empty();
     for (var i = taskList.length; i-->0; ) {
         var currentTask = taskList[i];
-        var task = "<li id='" + currentTask.uid + "'><a href='#'><h1>" + currentTask.title + "</h1><h2>" + zeroPad(currentTask.hours, 2) + ":" + zeroPad(currentTask.minutes, 2) + "</h2></a><a href='#'></a></li>";
+        var task = "<li id='" + currentTask.uid + "'><a href='#'><h1>" + currentTask.title + "</h1><h2>" + zeroPad(currentTask.hours, 2) + ":" + zeroPad(currentTask.minutes, 2) + "</h2></a><a href='#' onclick='removeTaskFromList(\"" + currentTask.uid + "\")'></a></li>";
         $('#taskList ul').append(task).listview('refresh');
     }
+}
+
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
+function removeTaskFromList(uid) {
+    for (var i = taskList.length; i-->0; ) {
+        var currentTask = taskList[i];
+        if(currentTask.uid == uid) {
+            taskList.remove(i);
+            break;
+        }
+    }
+    window.localStorage.setItem('taskList', JSON.stringify(taskList));
+    redrawTaskList();
 }
 
 $(document).ready( function () {
