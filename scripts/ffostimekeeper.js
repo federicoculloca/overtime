@@ -111,6 +111,12 @@ $(document).ready( function () {
         $('#taskList ul').empty();
     });
 
+    $('#backFromAddTask').click(function () {
+        $('#addTaskTitle').val("");
+        $('#addTaskDurationH').val("");
+        $('#addTaskDurationM').val("");
+    });
+
     taskList = JSON.parse(window.localStorage.getItem('taskList')) || [];
     if (taskList.length != 0) {
         redrawTaskList();
