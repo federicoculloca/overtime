@@ -70,16 +70,18 @@ function addDateSeparator(listView, date) {
 
 // Array Remove - By John Resig (MIT Licensed)
 Array.prototype.remove = function(from, to) {
-  var rest = this.slice((to || from) + 1 || this.length);
-  this.length = from < 0 ? this.length + from : from;
-  return this.push.apply(this, rest);
+    var rest = this.slice((to || from) + 1 || this.length);
+    this.length = from < 0 ? this.length + from : from;
+    return this.push.apply(this, rest);
 };
 
 function removeTaskFromList(uid) {
     for (var i = taskList.length; i-->0; ) {
         var currentTask = taskList[i];
         if(currentTask.uid == uid) {
-            taskList.remove(i);
+            if (confirm ("Remove selected task?")) {
+                taskList.remove(i);
+            }
             break;
         }
     }
