@@ -5,6 +5,18 @@ function TKTask(title, hours, minutes) {
     this.hours = hours;
     this.minutes = minutes;
     this.uid = generateUID();
+    this.dateAdded = Date(); // when de-serialized it will return a string anyway
+}
+
+function isTaskInDateRange(task, dateFrom, dateTo) {
+    // set all hours to zero to compare only year, month and day
+    currentTaskDate = new Date(task.dateAdded);
+    currentTaskDate.setHour(0, 0, 0, 0);
+    normalizedDateFrom = new Date(dateFrom);
+    normalizedDateTo = new Date(dateTo);
+    normalizedDateFrom.setHour(0, 0, 0, 0);
+    normalizedDateTo.setHour(0, 0, 0, 0);
+    return currentTaskDate >= normalizedDateFrom && currentTaskDate <= normalizedDateTo;
 }
 
 function generateUID(){
@@ -25,11 +37,35 @@ function zeroPad(n, p, c) {
 
 function redrawTaskList() {
     $('#taskList ul').empty();
+    var firstElement = true;
     for (var i = taskList.length; i-->0; ) {
         var currentTask = taskList[i];
+        var currentTaskNormDate = new Date(taskList[i].dateAdded);
+        currentTaskNormDate.setHours(0, 0, 0, 0);
+        if(!firstElement) {
+            var previousTaskNormDate = new Date(taskList[i+1].dateAdded);
+            previousTaskNormDate.setHours(0, 0, 0, 0);
+            if (currentTaskNormDate.getTime() != previousTaskNormDate.getTime()) {
+                addDateSeparator($('#taskList ul'), currentTaskNormDate);
+            }
+        } else {
+            firstElement = false;
+            addDateSeparator($('#taskList ul'), currentTaskNormDate);
+        }
         var task = "<li id='" + currentTask.uid + "'><a href='#'><h1>" + currentTask.title + "</h1><h2>" + zeroPad(currentTask.hours, 2) + ":" + zeroPad(currentTask.minutes, 2) + "</h2></a><a href='#' onclick='removeTaskFromList(\"" + currentTask.uid + "\")'></a></li>";
         $('#taskList ul').append(task).listview('refresh');
     }
+}
+
+var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+
+function addDateSeparator(listView, date) {
+    var divider = "<li data-role='list-divider'>" +
+        monthNames[date.getMonth()] + " " +
+        date.getDate() + " " +
+        date.getFullYear() + "</li>";
+    listView.append(divider);
 }
 
 // Array Remove - By John Resig (MIT Licensed)
