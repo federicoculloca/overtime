@@ -26,6 +26,7 @@
     </div>
     <div data-role="footer" data-position="fixed">
         <a data-role="button" id="listClearButton">clear</a>
+        <a data-role="button" href="#reportPage" id="reportButton">report</a>
     </div>
 </div>
 <div data-role="page" id="addTaskPage">
@@ -42,6 +43,17 @@
         <label for="addTaskDurationM">MM</label>
         <input id="addTaskDurationM" />
     </div>
+</div>
+<div data-role="page" id="reportPage">
+    <div data-role="header">
+        <h1>Time report</h1>
+        <a data-role="button" class="ui-btn-left" href="#mainPage">&lt;</a>
+        <a data-role="button" class="ui-btn-right" id="calculateReport">Calculate</a>
+    </div>
+    <label for="startDate">Start from</label>
+    <input id="startDate" type="date" />
+    <label for="endDate">up to</label>
+    <input id="endDate" type="date" />
 </div>
 </body>
 </html>

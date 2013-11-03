@@ -65,7 +65,8 @@ var monthNames = [ "January", "February", "March", "April", "May", "June",
 function addDateSeparator(listView, date) {
     var divider = "<li data-role='list-divider'>" +
         monthNames[date.getMonth()] + " " +
-        date.getFullYear() + "</li>";
+        date.getFullYear() + 
+        "</li>";
     listView.append(divider);
 }
 
