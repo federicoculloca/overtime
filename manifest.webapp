@@ -1,0 +1,18 @@
+{
+  "version": "1",
+  "name": "Overtime",
+  "launch_path": "/index.html",
+  "description": "Little app to compute work overtime",
+  "icons" : {
+    "60" : "/images/icon.png",
+    "128" : "/images/icon128.png"
+  },
+  "developer": {
+    "name": "Federico klez Culloca",
+    "url": "http://klezlab.it"
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en"
+}
