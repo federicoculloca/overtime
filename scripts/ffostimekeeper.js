@@ -42,9 +42,11 @@ function redrawTaskList() {
         var currentTask = taskList[i];
         var currentTaskNormDate = new Date(taskList[i].dateAdded);
         currentTaskNormDate.setHours(0, 0, 0, 0);
+        currentTaskNormDate.setDate(1);
         if(!firstElement) {
             var previousTaskNormDate = new Date(taskList[i+1].dateAdded);
             previousTaskNormDate.setHours(0, 0, 0, 0);
+            previousTaskNormDate.setDate(1);
             if (currentTaskNormDate.getTime() != previousTaskNormDate.getTime()) {
                 addDateSeparator($('#taskList ul'), currentTaskNormDate);
             }
@@ -63,7 +65,6 @@ var monthNames = [ "January", "February", "March", "April", "May", "June",
 function addDateSeparator(listView, date) {
     var divider = "<li data-role='list-divider'>" +
         monthNames[date.getMonth()] + " " +
-        date.getDate() + " " +
         date.getFullYear() + "</li>";
     listView.append(divider);
 }
