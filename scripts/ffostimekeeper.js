@@ -54,7 +54,14 @@ function redrawTaskList() {
             firstElement = false;
             addDateSeparator($('#taskList ul'), currentTaskNormDate);
         }
-        var task = "<li id='" + currentTask.uid + "'><a href='#'><h1>" + currentTask.title + "</h1><h2>" + zeroPad(currentTask.hours, 2) + ":" + zeroPad(currentTask.minutes, 2) + "</h2></a><a href='#' onclick='removeTaskFromList(\"" + currentTask.uid + "\")'></a></li>";
+        var task = "<li id='" + currentTask.uid + "'>" + 
+            "<a href='#'>" +
+            "<h1>" + currentTask.title + "</h1>" +
+            "<h2>" + zeroPad(currentTask.hours, 2) +
+            ":" + zeroPad(currentTask.minutes, 2) +
+            "</h2><p>" + new Date(currentTask.dateAdded).toLocaleDateString() +
+            "</p></a><a href='#' onclick='removeTaskFromList(\"" +
+            currentTask.uid + "\")'></a></li>";
         $('#taskList ul').append(task).listview('refresh');
     }
 }
