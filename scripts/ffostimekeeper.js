@@ -92,10 +92,10 @@ function removeTaskFromList(uid) {
 }
 
 function setInitialReportDates() {
-    $('#startDate').val(new Date().toLocaleDateString());
-    var endDate = new Date();
-    endDate.setMonth(endDate.getMonth() - 1);
-    $('#endDate').val(endDate.toLocaleDateString());
+    $('#endDate').val(new Date().toLocaleDateString());
+    var startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - 1);
+    $('#startDate').val(startDate.toLocaleDateString());
 }
 
 $(document).ready( function () {
