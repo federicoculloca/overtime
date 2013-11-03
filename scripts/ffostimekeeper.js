@@ -11,12 +11,22 @@ function TKTask(title, hours, minutes) {
 function isTaskInDateRange(task, dateFrom, dateTo) {
     // set all hours to zero to compare only year, month and day
     currentTaskDate = new Date(task.dateAdded);
-    currentTaskDate.setHour(0, 0, 0, 0);
+    currentTaskDate.setHours(0, 0, 0, 0);
     normalizedDateFrom = new Date(dateFrom);
     normalizedDateTo = new Date(dateTo);
-    normalizedDateFrom.setHour(0, 0, 0, 0);
-    normalizedDateTo.setHour(0, 0, 0, 0);
+    normalizedDateFrom.setHours(0, 0, 0, 0);
+    normalizedDateTo.setHours(0, 0, 0, 0);
     return currentTaskDate >= normalizedDateFrom && currentTaskDate <= normalizedDateTo;
+}
+
+function sumMinutes(dateFrom, dateTo) {
+    var totalMinutes = 0;
+    for (var i = taskList.length; i-->0;) {
+        if (isTaskInDateRange(taskList[i], dateFrom, dateTo)) {
+            totalMinutes += (taskList[i].minutes + (taskList[i].hours * 60));
+        }
+    }
+    return totalMinutes;
 }
 
 function generateUID(){
@@ -125,6 +135,13 @@ $(document).ready( function () {
             window.localStorage.removeItem('taskList');
             $('#taskList ul').empty();
         }
+    });
+
+    $('#calculateReport').click(function () {
+        var totalMinutes = sumMinutes($("#startDate").val(), $("#endDate").val());
+        var hours = Math.floor(totalMinutes / 60);
+        var minutes = totalMinutes % 60;
+        alert ("Total time: " + zeroPad(hours, 2) + ":" + zeroPad(minutes, 2));
     });
 
     $('#backFromAddTask').click(function () {
