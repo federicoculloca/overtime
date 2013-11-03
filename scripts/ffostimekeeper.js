@@ -113,9 +113,11 @@ $(document).ready( function () {
     });
 
     $('#listClearButton').click(function () {
-        taskList = [];
-        window.localStorage.removeItem('taskList');
-        $('#taskList ul').empty();
+        if(confirm("Delete all tasks?")) {
+            taskList = [];
+            window.localStorage.removeItem('taskList');
+            $('#taskList ul').empty();
+        }
     });
 
     $('#backFromAddTask').click(function () {
