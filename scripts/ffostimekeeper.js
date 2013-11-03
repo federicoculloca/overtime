@@ -91,6 +91,13 @@ function removeTaskFromList(uid) {
     redrawTaskList();
 }
 
+function setInitialReportDates() {
+    $('#startDate').val(new Date().toLocaleDateString());
+    var endDate = new Date();
+    endDate.setMonth(endDate.getMonth() - 1);
+    $('#endDate').val(endDate.toLocaleDateString());
+}
+
 $(document).ready( function () {
     $('#addTaskOk').click(function () {
         var title = $('#addTaskTitle').val();
@@ -117,10 +124,15 @@ $(document).ready( function () {
         $('#addTaskDurationM').val("");
     });
 
+    $('#backFromReport').click(function () {
+        setInitialReportDates();
+    });
+
     taskList = JSON.parse(window.localStorage.getItem('taskList')) || [];
     if (taskList.length != 0) {
         redrawTaskList();
     }
+    setInitialReportDates();
 });
 
 
