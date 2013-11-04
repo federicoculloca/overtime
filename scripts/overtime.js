@@ -108,11 +108,17 @@ function removeTaskFromList(uid) {
     redrawTaskList();
 }
 
+function to8601(date) {
+        var month = ("0" + (date.getMonth() + 1)).slice(-2);
+        var day  = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), month, day].join("-");
+}
+
 function setInitialReportDates() {
-    $('#endDate').val(new Date().toLocaleDateString());
+    $('#endDate').val(to8601(new Date()));
     var startDate = new Date();
     startDate.setMonth(startDate.getMonth() - 1);
-    $('#startDate').val(startDate.toLocaleDateString());
+    $('#startDate').val(to8601(startDate));
 }
 
 $(document).ready( function () {
