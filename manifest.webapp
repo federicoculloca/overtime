@@ -5,6 +5,7 @@
   "description": "Little app to compute work overtime",
   "icons" : {
     "60" : "/images/icon.png",
+    "90" : "/images/icon90.png",
     "128" : "/images/icon128.png"
   },
   "developer": {
